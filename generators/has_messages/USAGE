@@ -1,0 +1,9 @@
+Description:
+    Create model and migration
+
+Example:
+    ./script/generate has_messages
+
+    This will create:
+        app/models/message.rb
+        db/migrate/xxx_create_messages.rb

@@ -1,0 +1,100 @@
+= HasMessages
+
+This plugin provides a nice and easy way to create simple internal messaging
+system in your application.
+
+== Usage
+
+These instructions will show you how to use the plugin.
+
+=== Generator
+
+Run the generator from your RAILS_ROOT:
+
+  ./script/generate has_messages
+
+This will create:
+
+  Model:      RAILS_ROOT/app/models/message.rb
+  Migration:  RAILS_ROOT/db/migrate/xxx_create_messages.rb
+
+And you will need to run a database migration from your RAILS_ROOT:
+
+  rake db:migrate
+
+=== Mixin
+
+add <tt>has_messages</tt> to your user-like model:
+
+  class User < ActiveRecord::Base
+    has_messages
+    ...
+  end
+
+or, just any activerecord models:
+
+  class Company < ActiveRecord::Base
+    has_messages
+    ...
+  end
+
+=== Read and send messages
+
+To get the messages:
+
+  user = User.find some_id
+  user.inbox # will return all messages received by the user
+  user.outbox # will return all messages sent by the user
+
+  user.has_new_messages? # return true if the user has unread messages
+  user.new_messages # return all unread messages
+
+and you can add options to the method, like:
+
+  user.inbox :limit => 20 # will return last 20 received messages
+
+to read the message:
+
+  message = user.read_message(message_id)
+  # receive a message_id (generally from the request's params) and return the message object
+  # this method will set the message as read
+
+  subject = message.subject
+  sender = message.sender
+  body = message.body # return the body of the message (string)
+  sent_at = message.sent_at
+
+to send a message:
+
+  me = User.find some_id
+  delilah = User.find some_other_id
+
+  subject = "Hi there Delilah"
+  body = "What's it like in New York city??"
+
+  me.send_message(delilah, subject, body) # send_message(receiver, subject, body)
+
+to delete the message
+
+  user.delete_message(message_id)
+  # receive a message_id and set the message as trashed,
+  # delete the record if the message has been trashed by both sender and receiver.
+  # don't use <tt>message.destroy</tt> directly, cause it will delete the message
+  # both from the receiver's inbox and sender's outbox. The users will be confused :-(
+
+== Installation
+
+Run the following command in your RAILS_ROOT:
+
+  ./script/plugin install git://github.com/xinuc/has_messages.git
+
+Or, simply get the tarball at:
+
+  http://github.com/xinuc/has_messages/tarball/master
+
+extract it to your vendor/plugins and rename it to 'has_messages'
+
+== Bugs, Patches or Feature requests
+
+If you find any bugs, submit your patches or request any features, drop me an email: xinuc@xinuc.org
+Or, just simply fork the project at github.com and send me a pull request.

@@ -1,0 +1,8 @@
+author: Nugroho Herucahyono
+summary: add a nice and simple internal messaging system between users in your application.
+description: "Hmmph... yeah, like the little inbox in your facebook, maybe..."
+homepage: http://github.com/xinuc/has_messages
+plugin: git://github.com/xinuc/has_messages.git
+license: MIT
+version: 0.01
+rails_version: 2.0+
