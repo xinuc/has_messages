@@ -15,20 +15,20 @@ module Xinuc
 
     module ModelInstanceMethods
 
-      def inbox
-        Message.find_received_messages self
+      def inbox(options = {})
+        Message.find_received_messages self, options
       end
 
-      def new_messages
-        Message.find_unread_received_messages self
+      def new_messages(options = {})
+        Message.find_unread_received_messages self, options
       end
 
       def has_new_messages?
         self.new_messages.count > 0
       end
 
-      def outbox
-        Message.find_sent_messages self
+      def outbox(options = {})
+        Message.find_sent_messages self, options
       end
 
       def read_message(message_id)
@@ -37,7 +37,7 @@ module Xinuc
 
       def send_message(receiver, subject, body)
         Message.new(:receiver => receiver, :sender => self, :subject => subject,
-          :body => body).save!
+          :body => body).save
       end
 
       def delete_message(message_id)
