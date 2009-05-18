@@ -31,7 +31,7 @@ add <tt>has_messages</tt> to your user-like model:
     ...
   end
 
-or, just any activerecord models:
+or yes, just any activerecord models:
 
   class Company < ActiveRecord::Base
     has_messages
@@ -49,7 +49,7 @@ To get the messages:
   user.has_new_messages? # return true if the user has unread messages
   user.new_messages # return all unread messages
 
-and you can add options to the method, like:
+and you can add options to the methods, like:
 
   user.inbox :limit => 20 # will return last 20 received messages
 
@@ -96,5 +96,5 @@ extract it to your vendor/plugins and rename it to 'has_messages'
 
 == Bugs, Patches or Feature requests
 
-If you find any bugs, submit your patches or request any features, drop me an email: xinuc@xinuc.org
+If you find any bugs, submit your patches or request any features, drop me an email: xinuc@xinuc.org. 
 Or, just simply fork the project at github.com and send me a pull request.
