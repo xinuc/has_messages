@@ -39,11 +39,22 @@ module Xinuc
         @message = Message.new(:receiver => receiver, :sender => self, :subject => subject,
           :body => body)
         @message.save
-        @message.deliver_message_notification!
+        @message.deliver_message_notification! if (defined?(Notifier) and Notifier.responds_to?(message_notification))
+      end
+
+      def reply_message(message, subject, body)
+        @message = Message.new(:receiver => message.sender, :sender => self, :subject => subject, :body => body, :reply_of => message.id)
+        @message.save
+        @message.deliver_message_notification! if (defined?(Notifier) and Notifier.responds_to?(message_notification))
       end
 
       def delete_message(message_id)
         Message.trash_message self, message_id
+      end
+
+      def get_replies(message_id)
+        # test if current user is a sender/receiver of message_id else fails
+        Message.find(:all, :conditions => {:reply_of => message_id})
       end
       
     end

@@ -14,6 +14,8 @@ class CreateMessages < ActiveRecord::Migration
       t.string :receiver_type
       t.integer :receiver_id
 
+      t.integer :reply_of
+
       t.boolean :trashed_by_sender, :default => false
       t.boolean :trashed_by_receiver, :default => false
 

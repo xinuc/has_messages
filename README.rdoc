@@ -105,6 +105,19 @@ to delete the message
   # don't use <tt>message.destroy</tt> directly, cause it will delete the message
   # both from the receiver's inbox and sender's outbox. The users will be confused :-(
 
+== Reply Messages
+
+To reply to a message
+  message = Message.find some_id
+  
+  user = User.find some_id
+  user.reply_message(message, subject, body)
+
+To get all replies belonging to a message
+
+  user = User.find some_id
+  user.get_replies(message_id)
+
 == Installation
 
 Run the following command in your RAILS_ROOT:
