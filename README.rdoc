@@ -1,7 +1,11 @@
 = HasMessages
 
 This plugin provides a nice and easy way to create simple internal messaging
-system in your application.
+system in your application. 
+
+This is a fork of xinuc's has_messages, which adds e-mail notification support.
+
+= implementation
 
 == Usage
 
@@ -18,9 +22,27 @@ This will create:
   Model:      RAILS_ROOT/app/models/message.rb
   Migration:  RAILS_ROOT/db/migrate/xxx_create_messages.rb
 
+If you would like to add e-mail notification support so that users will receive
+an e-mail upon a new message entering their mailbox, use the following instead:
+
+  ./script/generate has_messages --email
+
+This will create the necessary models for email notification.
+
+== Database 
 And you will need to run a database migration from your RAILS_ROOT:
 
   rake db:migrate
+
+== Email Notification 
+
+Other than running ./script/generate has_messages --email
+
+All you need to do is to make sure your ActionMailer configuration is added to
+your environment
+
+You can edit the template of the email at
+app/views/notifier/message_notification.html.erb
 
 === Mixin
 

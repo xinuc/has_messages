@@ -9,6 +9,12 @@ class HasMessagesGenerator < Rails::Generator::Base
       m.directory 'spec/models'
       m.directory 'db/migrate'
 
+      if options[:email]
+
+      # create view directory for Notifier
+      # copy Notifier.rb into app/models        
+      end
+
       m.template 'message.rb', File.join('app/models', "message.rb")
 
       unless options[:skip_migration]
@@ -26,6 +32,8 @@ class HasMessagesGenerator < Rails::Generator::Base
     opt.separator 'Options:'
     opt.on("--skip-migration",
       "Don't generate a migration file for this model") { |v| options[:skip_migration] = v }
+    opt.on("--email", 
+      "Generate email notification system") { |v| options[:email] = v }
   end
   
 end

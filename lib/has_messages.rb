@@ -36,8 +36,10 @@ module Xinuc
       end
 
       def send_message(receiver, subject, body)
-        Message.new(:receiver => receiver, :sender => self, :subject => subject,
-          :body => body).save
+        @message = Message.new(:receiver => receiver, :sender => self, :subject => subject,
+          :body => body)
+        @message.save
+        @message.deliver_message_notification!
       end
 
       def delete_message(message_id)
