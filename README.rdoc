@@ -109,11 +109,11 @@ to delete the message
 
 Run the following command in your RAILS_ROOT:
 
-  ./script/plugin install git://github.com/xinuc/has_messages.git
+  ./script/plugin install git://github.com/davidchua/has_messages.git
 
 Or, simply get the tarball at:
 
-  http://github.com/xinuc/has_messages/tarball/master
+  http://github.com/davidchua/has_messages/tarball/master
 
 extract it to your vendor/plugins and rename it to 'has_messages'
 
