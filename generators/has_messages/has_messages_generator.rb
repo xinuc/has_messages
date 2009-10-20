@@ -10,12 +10,15 @@ class HasMessagesGenerator < Rails::Generator::Base
       m.directory 'db/migrate'
 
       if options[:email]
-
-      # create view directory for Notifier
-      # copy Notifier.rb into app/models        
+        m.directory 'app/views/notifier'
+        m.template 'message_with_email.rb', File.join('app/models', "message.rb")
+        m.template 'notifier.rb', File.join('app/models', "notifier.rb")
+        m.template 'views/message_notification.html.erb', File.join('app/views/notifier', "message_notification.html.erb")
+      else
+        m.template 'message.rb', File.join('app/models', "message.rb")
       end
 
-      m.template 'message.rb', File.join('app/models', "message.rb")
+
 
       unless options[:skip_migration]
         m.migration_template 'migration.rb', 'db/migrate', :assigns => {
