@@ -119,5 +119,5 @@ extract it to your vendor/plugins and rename it to 'has_messages'
 
 == Bugs, Patches or Feature requests
 
-If you find any bugs, submit your patches or request any features, drop me an email: xinuc@xinuc.org. 
-Or, just simply fork the project at github.com and send me a pull request.
+If you find any bugs, submit your patches or request any features, drop me an
+email: zhchua@gmail.com
