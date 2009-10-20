@@ -41,8 +41,9 @@ Other than running ./script/generate has_messages --email
 All you need to do is to make sure your ActionMailer configuration is added to
 your environment
 
-You can edit the template of the email at
-app/views/notifier/message_notification.html.erb
+Remember to edit the template of the email at
+app/views/notifier/message_notification.html.erb to take into account the
+attributes of your User model
 
 === Mixin
 
